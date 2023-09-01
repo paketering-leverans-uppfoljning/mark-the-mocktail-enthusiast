@@ -1,6 +1,6 @@
 import styles from "./Searchbar.module.css";
-import { useState } from "react";
-import { isEmpty } from "lodash";
+import { useState, useRef } from "react";
+import { isEmpty, isEqual } from "lodash";
 import LoadingSpinner from "./LoadingSpinner";
 
 //If app gets more complex, context may be needed for handling of mocktails
@@ -10,8 +10,10 @@ import LoadingSpinner from "./LoadingSpinner";
  * A real world example would use a combobox.)
  */
 // TODO: refactor so arrow keys can be used
-function Searchbar({ mocktails }) {
+function Searchbar({ mocktails, dispatch }) {
   const [searchQuery, setSearchQuery] = useState("");
+  //makes sure the input is focused after submission via click
+  const ref = useRef(null);
 
   if (isEmpty(mocktails)) {
     return <LoadingSpinner />;
@@ -21,24 +23,37 @@ function Searchbar({ mocktails }) {
       <li
         key={mocktail}
         className={styles["search-result"]}
-        onClick={(e) => setSearchQuery(e.target.textContent)}
+        onClick={(e) => {
+          setSearchQuery(e.target.textContent);
+          dispatch({ type: "add", payload: e.target.textContent });
+          ref.current.focus();
+        }}
       >
         {mocktail}
       </li>
     )
   );
   return (
-    <div className={styles["container"]}>
+    <form
+      className={styles["container"]}
+      onSubmit={(e) => {
+        handleSubmit(
+          e,
+          dispatch,
+          setSearchQuery,
+          getSearchResults(mocktails, searchQuery)
+        );
+      }}
+    >
       <input
+        ref={ref}
         className={styles["searchbar"]}
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         placeholder={"Search for a drink.."}
       />
-      {searchQuery && (
-        <ul className={styles["search-results"]}>{filteredMocktails}</ul>
-      )}
-    </div>
+      <ul className={styles["search-results"]}>{filteredMocktails}</ul>
+    </form>
   );
 }
 
@@ -47,7 +62,11 @@ function Searchbar({ mocktails }) {
  */
 //NOTE: I chose not to unit test this function as I think the integration tests
 // gave me enough confidence.
+// may use useCallback() for optimisation due this occuring in submission as well
 const getSearchResults = (mocktails, searchQuery) => {
+  if (!searchQuery) {
+    return [];
+  }
   const searchResults = mocktails
     .filter((mocktail) =>
       mocktail.strDrink.toLowerCase().includes(searchQuery.toLowerCase())
@@ -62,6 +81,16 @@ const getSearchResults = (mocktails, searchQuery) => {
     return ["No results found."];
   }
   return searchResults;
+};
+
+const handleSubmit = (e, dispatch, setSearchQuery, searchResults) => {
+  e.preventDefault();
+  if (isEqual(["No results found."], searchResults) || isEmpty(searchResults)) {
+    return;
+  }
+  //autocompletes to submit the first item in the suggestions.
+  dispatch({ type: "add", payload: searchResults[0] });
+  setSearchQuery("");
 };
 
 export default Searchbar;

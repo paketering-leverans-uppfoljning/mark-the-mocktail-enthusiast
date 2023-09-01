@@ -39,7 +39,7 @@ test("should display No results found when search query does not match any drink
 });
 
 test("should update search bar when clicking on search result", async () => {
-  render(<Searchbar mocktails={mockDrinks} />);
+  render(<Searchbar mocktails={mockDrinks} dispatch={jest.fn()} />);
   const user = userEvent.setup();
   const input = screen.getByRole("textbox");
 
@@ -54,7 +54,7 @@ test("should update search bar when clicking on search result", async () => {
 });
 
 test("should display no results on exact match", async () => {
-  render(<Searchbar mocktails={mockDrinks} />);
+  render(<Searchbar mocktails={mockDrinks} dispatch={jest.fn()} />);
   const user = userEvent.setup();
   const input = screen.getByRole("textbox");
 
@@ -65,4 +65,14 @@ test("should display no results on exact match", async () => {
 
   await user.click(searchResult);
   expect(screen.queryByRole("listitem")).not.toBeInTheDocument();
+});
+
+test("should clear itself after submission", async () => {
+  render(<Searchbar mocktails={mockDrinks} dispatch={jest.fn()} />);
+  const user = userEvent.setup();
+  const input = screen.getByRole("textbox");
+
+  await user.type(input, "Alice{Enter}");
+
+  expect(input).toHaveTextContent("");
 });
