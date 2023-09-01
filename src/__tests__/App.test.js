@@ -73,3 +73,42 @@ test("should be able to delete a drink", async () => {
   expect(listItem).not.toBeInTheDocument();
   expect(listLength - screen.getAllByRole("listitem").length).toBe(1);
 });
+
+test("should be able to filter by active drinks", async () => {
+  render(<App />);
+  const user = userEvent.setup();
+
+  await waitFor(() =>
+    expect(screen.queryByText("Loading..")).not.toBeInTheDocument()
+  );
+
+  const listItems = screen.getAllByRole("listitem");
+  const listLength = listItems.length;
+  const listItem = screen.getByText("Apple Berry Smoothie");
+
+  await user.click(listItem);
+  await user.click(screen.getByRole("button", { name: "Active" }));
+
+  expect(listItem).not.toBeInTheDocument();
+  expect(listLength - screen.getAllByRole("listitem").length).toBe(1);
+});
+
+test("should be able to filter by completed drinks", async () => {
+  render(<App />);
+  const user = userEvent.setup();
+
+  await waitFor(() =>
+    expect(screen.queryByText("Loading..")).not.toBeInTheDocument()
+  );
+
+  const listItems = screen.getAllByRole("listitem");
+  const listLength = listItems.length;
+  const listItem = screen.getByText("Apple Berry Smoothie");
+
+  await user.click(listItem);
+  await user.click(screen.getByRole("button", { name: "Completed" }));
+
+  expect(listItem).toBeInTheDocument();
+  expect(screen.queryByText("Banana Milkshake")).not.toBeInTheDocument();
+  expect(listLength - screen.getAllByRole("listitem").length).toBe(1);
+});

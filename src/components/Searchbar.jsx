@@ -35,7 +35,7 @@ function Searchbar({ mocktails, dispatch }) {
   );
   return (
     <form
-      className={`${styles["container"]} ${
+      className={`component ${styles["container"]} ${
         searchQuery ? styles["searchbar-open"] : ""
       }`}
       onSubmit={(e) => {
@@ -54,7 +54,9 @@ function Searchbar({ mocktails, dispatch }) {
         onChange={(e) => setSearchQuery(e.target.value)}
         placeholder={"Search for a drink.."}
       />
-      {!isEmpty(searchResults) && <ul className={styles["search-results"]}>{searchResults}</ul>}
+      {!isEmpty(searchResults) && (
+        <ul className={styles["search-results"]}>{searchResults}</ul>
+      )}
     </form>
   );
 }
