@@ -2,15 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("./assets/bg-desktop-light.jpg");
   width: 100%;
   font-family: "Josefin Sans", sans-serif;
   font-weight: 400;
   color: #393a4b;
+  height: 100vh;
 }
 
 .header {
-  color: #ffffff;
   font-size: 40px;
   letter-spacing: 1px;
   text-align: center;
