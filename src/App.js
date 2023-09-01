@@ -20,18 +20,27 @@ function App() {
     <div className={styles["container"]}>
       <h1 className={styles["header"]}>Mark's To-drink List</h1>
       <Searchbar mocktails={mocktails} dispatch={todoListDispatch} />
-      <TodoList list={todoList} />
+      <TodoList list={todoList} dispatch={todoListDispatch} />
     </div>
   );
 }
 
+let nextId = 0;
 const todoListReducer = (list, action) => {
   switch (action.type) {
     case "add": {
-      return [...list, action.payload];
+      return [...list, { name: action.payload, completed: false, id: nextId++ }];
     }
     default: {
       throw Error(`Unknown action ${action.type}`);
+    }
+    case "complete": {
+      return list.map((l) => {
+        if (l.id === action.payload.id) {
+          return {...l, completed: !l.completed };
+        }
+        return l;
+      });
     }
   }
 };
