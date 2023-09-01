@@ -18,7 +18,7 @@ function Searchbar({ mocktails, dispatch }) {
   if (isEmpty(mocktails)) {
     return <LoadingSpinner />;
   }
-  const filteredMocktails = getSearchResults(mocktails, searchQuery).map(
+  const searchResults = getSearchResults(mocktails, searchQuery).map(
     (mocktail) => (
       <li
         key={mocktail}
@@ -35,7 +35,9 @@ function Searchbar({ mocktails, dispatch }) {
   );
   return (
     <form
-      className={styles["container"]}
+      className={`${styles["container"]} ${
+        searchQuery ? styles["searchbar-open"] : ""
+      }`}
       onSubmit={(e) => {
         handleSubmit(
           e,
@@ -52,7 +54,7 @@ function Searchbar({ mocktails, dispatch }) {
         onChange={(e) => setSearchQuery(e.target.value)}
         placeholder={"Search for a drink.."}
       />
-      <ul className={styles["search-results"]}>{filteredMocktails}</ul>
+      {!isEmpty(searchResults) && <ul className={styles["search-results"]}>{searchResults}</ul>}
     </form>
   );
 }
@@ -72,7 +74,7 @@ const getSearchResults = (mocktails, searchQuery) => {
       mocktail.strDrink.toLowerCase().includes(searchQuery.toLowerCase())
     )
     .map((mocktail) => mocktail.strDrink)
-    .slice(0, 5);
+    .slice(0, 3);
   //makes the box disappear if user found the drink they searched for
   if (searchResults.length === 1 && searchResults[0] === searchQuery) {
     return [];
