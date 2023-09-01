@@ -5,7 +5,10 @@ import TodoList from "./components/TodoList";
 
 function App() {
   const [mocktails, setMocktails] = useState([]);
-  const [todoList, todoListDispatch] = useReducer(todoListReducer, []);
+  const [todoList, todoListDispatch] = useReducer(
+    todoListReducer,
+    initialDrinks
+  );
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
@@ -25,11 +28,19 @@ function App() {
   );
 }
 
-let nextId = 0;
+const initialDrinks = [
+  { name: "Apple Berry Smoothie", id: 0, completed: false },
+  { name: "Banana Milkshake", id: 1, completed: false },
+];
+
+let nextId = 3;
 const todoListReducer = (list, action) => {
   switch (action.type) {
     case "add": {
-      return [...list, { name: action.payload, completed: false, id: nextId++ }];
+      return [
+        ...list,
+        { name: action.payload, completed: false, id: nextId++ },
+      ];
     }
     default: {
       throw Error(`Unknown action ${action.type}`);
@@ -37,10 +48,13 @@ const todoListReducer = (list, action) => {
     case "complete": {
       return list.map((l) => {
         if (l.id === action.payload.id) {
-          return {...l, completed: !l.completed };
+          return { ...l, completed: !l.completed };
         }
         return l;
       });
+    }
+    case "delete": {
+      return list.filter((l) => l.id !== action.payload.id);
     }
   }
 };

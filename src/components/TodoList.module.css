@@ -11,8 +11,15 @@
 .list-item {
   padding: 16px 12px;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drink-name {
+  flex-grow: 1;
 }
 
 .crossed-over {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
