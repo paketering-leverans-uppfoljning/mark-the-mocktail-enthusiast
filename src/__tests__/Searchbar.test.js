@@ -38,7 +38,7 @@ test("should display No results found when search query does not match any drink
   expect(screen.getByText("No results found.")).toBeInTheDocument();
 });
 
-test("should update search bar when clicking on search result", async () => {
+test("should clear search bar when clicking on search result", async () => {
   render(<Searchbar mocktails={mockDrinks} dispatch={jest.fn()} />);
   const user = userEvent.setup();
   const input = screen.getByRole("textbox");
@@ -50,7 +50,7 @@ test("should update search bar when clicking on search result", async () => {
 
   await user.click(searchResult);
 
-  expect(input).toHaveValue("Alice Cocktail");
+  expect(input).toHaveTextContent("");
 });
 
 test("should display no results on exact match", async () => {

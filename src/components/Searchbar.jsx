@@ -24,7 +24,7 @@ function Searchbar({ mocktails, dispatch }) {
         key={mocktail}
         className={styles["search-result"]}
         onClick={(e) => {
-          setSearchQuery(e.target.textContent);
+          setSearchQuery("");
           dispatch({ type: "add", payload: e.target.textContent });
           ref.current.focus();
         }}
