@@ -32,6 +32,12 @@ function App() {
         dispatch={todoListDispatch}
         filterFn={activeFilter}
       />
+      <button
+        className={`component ${styles["clear-button"]}`}
+        onClick={() => todoListDispatch({ type: "clear" })}
+      >
+        CLEAR
+      </button>
     </div>
   );
 }
@@ -50,9 +56,6 @@ const todoListReducer = (list, action) => {
         { name: action.payload, completed: false, id: nextId++ },
       ];
     }
-    default: {
-      throw Error(`Unknown action ${action.type}`);
-    }
     case "complete": {
       return list.map((l) => {
         if (l.id === action.payload.id) {
@@ -63,6 +66,12 @@ const todoListReducer = (list, action) => {
     }
     case "delete": {
       return list.filter((l) => l.id !== action.payload.id);
+    }
+    case "clear": {
+      return [];
+    }
+    default: {
+      throw Error(`Unknown action ${action.type}`);
     }
   }
 };

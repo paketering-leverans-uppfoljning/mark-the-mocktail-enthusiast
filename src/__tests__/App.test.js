@@ -112,3 +112,16 @@ test("should be able to filter by completed drinks", async () => {
   expect(screen.queryByText("Banana Milkshake")).not.toBeInTheDocument();
   expect(listLength - screen.getAllByRole("listitem").length).toBe(1);
 });
+
+test("should be able to clear list", async () => {
+  render(<App />);
+  const user = userEvent.setup();
+
+  await waitFor(() =>
+    expect(screen.queryByText("Loading..")).not.toBeInTheDocument()
+  );
+
+  await user.click(screen.getByRole("button", { name: "CLEAR" }));
+
+  expect(screen.queryByRole("listitem")).not.toBeInTheDocument();
+});
