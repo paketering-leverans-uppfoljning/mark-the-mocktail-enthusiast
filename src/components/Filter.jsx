@@ -3,7 +3,7 @@ import styles from "./Filter.module.css";
 
 function Filter({ filter, updateFilter }) {
   return (
-    <div className={styles["container"]}>
+    <div className={`${styles["container"]} component`}>
       <button
         className={`${
           filter.name === "allFilter" ? styles["selected"] : ""

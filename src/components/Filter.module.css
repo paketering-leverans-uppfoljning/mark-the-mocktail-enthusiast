@@ -3,18 +3,13 @@
   justify-content: space-evenly;
   align-items: center;
   gap: 5px;
-  width: 90%;
-  max-width: 320px;
-  background-color: #ffffff;
   padding: 16px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
   text-align: center;
 }
 
 .filter-button {
-    font-weight: 700;
+  cursor: pointer;
+  font-weight: 700;
 }
 
 .selected {
