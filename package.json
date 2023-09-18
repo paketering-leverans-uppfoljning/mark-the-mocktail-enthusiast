@@ -1,6 +1,7 @@
 {
   "name": "mark-the-mocktail-enthusiast",
   "version": "0.1.0",
+  "homepage": "https://yh-material.github.io/mark-the-mocktail-enthusiast/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
