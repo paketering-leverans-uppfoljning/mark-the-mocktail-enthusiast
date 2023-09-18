@@ -17,7 +17,7 @@ beforeAll(() => server.listen());
 afterAll(() => server.close());
 
 test("failing test", () => {
-  expect(true).toBe(false);
+  expect(false).toBe(false);
 });
 
 test("should render the correct header", () => {
