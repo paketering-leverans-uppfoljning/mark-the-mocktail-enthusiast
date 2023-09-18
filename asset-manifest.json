@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.b51b3bae.css",
-    "main.js": "/static/js/main.08b7a791.js",
-    "static/js/787.c51d9b48.chunk.js": "/static/js/787.c51d9b48.chunk.js",
-    "index.html": "/index.html",
-    "static/media/icon-cross.svg": "/static/media/icon-cross.fd4ee76174bdd094e12f2b8cfcfb1824.svg",
-    "main.b51b3bae.css.map": "/static/css/main.b51b3bae.css.map",
-    "main.08b7a791.js.map": "/static/js/main.08b7a791.js.map",
-    "787.c51d9b48.chunk.js.map": "/static/js/787.c51d9b48.chunk.js.map"
+    "main.css": "/mark-the-mocktail-enthusiast/static/css/main.b51b3bae.css",
+    "main.js": "/mark-the-mocktail-enthusiast/static/js/main.025d5fc0.js",
+    "static/js/787.c51d9b48.chunk.js": "/mark-the-mocktail-enthusiast/static/js/787.c51d9b48.chunk.js",
+    "index.html": "/mark-the-mocktail-enthusiast/index.html",
+    "static/media/icon-cross.svg": "/mark-the-mocktail-enthusiast/static/media/icon-cross.fd4ee76174bdd094e12f2b8cfcfb1824.svg",
+    "main.b51b3bae.css.map": "/mark-the-mocktail-enthusiast/static/css/main.b51b3bae.css.map",
+    "main.025d5fc0.js.map": "/mark-the-mocktail-enthusiast/static/js/main.025d5fc0.js.map",
+    "787.c51d9b48.chunk.js.map": "/mark-the-mocktail-enthusiast/static/js/787.c51d9b48.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b51b3bae.css",
-    "static/js/main.08b7a791.js"
+    "static/js/main.025d5fc0.js"
   ]
 }
