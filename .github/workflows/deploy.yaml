@@ -1,25 +1,29 @@
-name: Linting and Testing
+name: Deploying
 
-on: #this workflow runs on pull requests and pushes to main or master
-  pull_request:
-    branches: [main, master]
+on:
   push:
-    branches: [main, master]
+    branches: [master, main]
 
-#this is a list of all jobs
 jobs:
-  testing: #name of first job
-    runs-on: ubuntu-latest #sets the env which this job runs on
-    steps: #defines the steps necessary
+  deploying:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
       - name: Checkout #checks out our current branch so this runner has the latest code
         uses: actions/checkout@v4 #uses means that it is a pre-defined action supplied by GitHub.
       - name: Setup Node
         uses: actions/setup-node@v3 #this is also a pre-defined action
         with:
           node-version: 20
-
       - name: NPM Install #we now need to install all our dependencies in this environment
         run: npm ci #npm clean install - does not write to package.json
 
-      - name: Run tests #if npm test throws and error this workflow fails.
-        run: npm test
+      - name: Build
+        run: npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
