@@ -24,6 +24,7 @@ jobs:
       - name: Run tests #if npm test throws and error this workflow fails.
         run: npm test
   deploying:
+    needs: testing
     runs-on: ubuntu-latest
     permissions:
       contents: write
