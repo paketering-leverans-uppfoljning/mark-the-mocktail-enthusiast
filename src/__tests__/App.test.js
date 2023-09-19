@@ -16,6 +16,7 @@ beforeAll(() => server.listen());
 
 afterAll(() => server.close());
 
+//always failing
 test("should always fail", () => {
   expect(false).toBe(true);
 });
