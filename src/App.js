@@ -1,12 +1,12 @@
 import styles from "./App.module.css";
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useState, useCallback } from "react";
 import Searchbar from "./components/Searchbar";
 import TodoList from "./components/TodoList";
 import Filter from "./components/Filter";
 
 function App() {
   const [mocktails, setMocktails] = useState([]);
-  const [todoList, todoListDispatch] = useReducer(
+  const [todoList, todoListDispatch = useReducer(
     todoListReducer,
     initialDrinks
   );
@@ -22,7 +22,7 @@ function App() {
     };
     fetchData();
   }, []);
-  return             (
+  return (
     <div className={styles["container"]}>
       <h1 className={styles["header"]}>Mark's To-drink List</h1>
       <Searchbar mocktails={mocktails} dispatch={todoListDispatch} />
