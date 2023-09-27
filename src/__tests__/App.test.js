@@ -16,6 +16,10 @@ beforeAll(() => server.listen());
 
 afterAll(() => server.close());
 
+test("failing test", () => {
+  expect(false).toBe(false);
+});
+
 test("should render the correct header", () => {
   render(<App />);
   expect(screen.getByText("Mark's To-drink List")).toBeInTheDocument();
