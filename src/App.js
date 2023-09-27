@@ -1,5 +1,5 @@
 import styles from "./App.module.css";
-import { useEffect, useReducer, useState, useCallback } from "react";
+import { useEffect, useReducer, useState } from "react";
 import Searchbar from "./components/Searchbar";
 import TodoList from "./components/TodoList";
 import Filter from "./components/Filter";
