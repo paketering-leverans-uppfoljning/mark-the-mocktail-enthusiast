@@ -6,7 +6,7 @@ import Filter from "./components/Filter";
 
 function App() {
   const [mocktails, setMocktails] = useState([]);
-  const [todoList, todoListDispatch = useReducer(
+  const [todoList, todoListDispatch] = useReducer(
     todoListReducer,
     initialDrinks
   );
