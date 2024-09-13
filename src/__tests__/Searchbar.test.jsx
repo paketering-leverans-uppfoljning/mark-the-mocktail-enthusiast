@@ -39,7 +39,7 @@ test("should display No results found when search query does not match any drink
 });
 
 test("should clear search bar when clicking on search result", async () => {
-  render(<Searchbar mocktails={mockDrinks} dispatch={jest.fn()} />);
+  render(<Searchbar mocktails={mockDrinks} dispatch={vi.fn()} />);
   const user = userEvent.setup();
   const input = screen.getByRole("textbox");
 
@@ -54,7 +54,7 @@ test("should clear search bar when clicking on search result", async () => {
 });
 
 test("should display no results on exact match", async () => {
-  render(<Searchbar mocktails={mockDrinks} dispatch={jest.fn()} />);
+  render(<Searchbar mocktails={mockDrinks} dispatch={vi.fn()} />);
   const user = userEvent.setup();
   const input = screen.getByRole("textbox");
 
@@ -68,7 +68,7 @@ test("should display no results on exact match", async () => {
 });
 
 test("should clear itself after submission", async () => {
-  render(<Searchbar mocktails={mockDrinks} dispatch={jest.fn()} />);
+  render(<Searchbar mocktails={mockDrinks} dispatch={vi.fn()} />);
   const user = userEvent.setup();
   const input = screen.getByRole("textbox");
 

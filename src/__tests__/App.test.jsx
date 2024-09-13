@@ -2,13 +2,12 @@ import { render, screen, waitFor, within } from "@testing-library/react";
 import App from "../App";
 import userEvent from "@testing-library/user-event";
 import { setupServer } from "msw/node";
-import { rest } from "msw";
+import { http, HttpResponse } from "msw";
 import mockDrinks from "./mockDrinks.json";
 
 const server = setupServer(
-  rest.get(
-    "https://www.thecocktaildb.com/api/json/v1/1/filter.php",
-    (_req, res, ctx) => res(ctx.json({ drinks: mockDrinks }))
+  http.get("https://www.thecocktaildb.com/api/json/v1/1/filter.php", () =>
+    HttpResponse.json({ drinks: mockDrinks })
   )
 );
 

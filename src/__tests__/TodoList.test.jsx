@@ -8,7 +8,7 @@ test("should have strike-through text when complete", () => {
       filterFn={() => (drink) => drink}
     />
   );
-  expect(screen.getByRole("listitem")).toHaveClass("crossed-over");
+  expect(screen.getByRole("listitem")).toHaveClass(/crossed-over/i);
 });
 
 test("should not have strike-through text when not complete", () => {
@@ -18,5 +18,5 @@ test("should not have strike-through text when not complete", () => {
       filterFn={() => (drink) => drink}
     />
   );
-  expect(screen.getByRole("listitem")).not.toHaveClass("crossed-over");
+  expect(screen.getByRole("listitem")).not.toHaveClass(/crossed-over/i);
 });
