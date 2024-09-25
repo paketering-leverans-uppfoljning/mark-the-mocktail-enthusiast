@@ -23,11 +23,10 @@ function App() {
     fetchData();
   }, []);
 
-  const asd = "123"
   return (
     <div className={styles["container"]}>
       <h1 className={styles["header"]}>Mark&apos;s To-drink List</h1>
-      <h2>My favorite mocktails</h2>
+      <h2>My favorite mocktails!!!!</h2>
       <Searchbar mocktails={mocktails} dispatch={todoListDispatch} />
       <Filter filter={activeFilter} updateFilter={setActiveFilter} />
       <TodoList
