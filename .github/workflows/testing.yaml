@@ -1,6 +1,8 @@
 on:
- pull_request:
-   branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  push:
+    branches: [main, master]
 
 jobs:
   testing:
@@ -14,3 +16,5 @@ jobs:
         run: npm i
       - name: Run tests
         run: npm test
+      - name: Run linting
+        run: npm run lint
