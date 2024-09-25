@@ -24,7 +24,7 @@ function App() {
   }, []);
   return (
     <div className={styles["container"]}>
-      <h1 className={styles["header"]}>Mark&apos;s To-drink List</h1>
+      <h1 className={styles["header"]}>Kristian&apos;s To-drink List</h1>
       <h2>My favorite mocktails</h2>
       <h2>Another subtitle</h2>
       <Searchbar mocktails={mocktails} dispatch={todoListDispatch} />
