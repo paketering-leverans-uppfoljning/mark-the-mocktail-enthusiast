@@ -1,0 +1,16 @@
+on:
+ pull_request:
+   branches: [main, master]
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout changes
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v3
+      - name: Install project
+        run: npm i
+      - name: Run tests
+        run: npm test
